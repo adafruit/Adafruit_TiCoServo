@@ -63,7 +63,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(N_LEDS, LED_PIN);
 Adafruit_NeoServo servo;
 
 void setup(void) {
-  servo.begin(SERVO_PIN);
+  servo.attach(SERVO_PIN);
   strip.begin();
 }
 
@@ -71,7 +71,7 @@ void loop(void) {
   int a, x;
   a = analogRead(0);                            // 0 to 1023
   x = map(a, 0, 1023, SERVO_MIN, SERVO_MAX);    // Scale to servo range
-  servo.move(x);                                // Move servo
+  servo.write(x);                               // Move servo
   x = map(a, 0, 1023, 0, strip.numPixels()-1);  // Scale to strip length
   strip.clear();
   while(x--) strip.setPixelColor(x, 255, 0, 0); // Set pixels

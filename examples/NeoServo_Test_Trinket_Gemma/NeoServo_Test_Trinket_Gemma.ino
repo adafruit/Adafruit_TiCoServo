@@ -44,12 +44,12 @@ Adafruit_NeoServo servo[2];
 
 void setup(void) {
 #if (F_CPU == 16000000L)
-  // 16 MHz Trinket requires this line for correct timing:
+  // 16 MHz Trinket requires setting prescale for correct timing.
+  // This MUST be done BEFORE servo.attach()!
   clock_prescale_set(clock_div_1);
-  // This MUST be done BEFORE servo.begin()!
 #endif
-  servo[0].begin(SERVO_0_PIN);
-  servo[1].begin(SERVO_1_PIN);
+  servo[0].attach(SERVO_0_PIN);
+  servo[1].attach(SERVO_1_PIN);
   strip.begin();
 }
 
@@ -63,16 +63,16 @@ void loop(void) {
     pixelNum = 0;                           // Yes, reset to start and
     switch(state) {                         // make servos do something...
      case 0:
-      servo[0].move(SERVO_MAX);
+      servo[0].write(SERVO_MAX);
       break;
      case 1:
-      servo[1].move(SERVO_MAX);
+      servo[1].write(SERVO_MAX);
       break;
      case 2:
-      servo[0].move(SERVO_MIN);
+      servo[0].write(SERVO_MIN);
       break;
      case 3:
-      servo[1].move(SERVO_MIN);
+      servo[1].write(SERVO_MIN);
       break;
     }
     if(++state > 3) state = 0;              // Change servo state next time

@@ -35,9 +35,9 @@
 class Adafruit_NeoServo {
  public:
   Adafruit_NeoServo(void) : pin(-1), active(false) { };
-  void begin(const int8_t p),
-       move(const servoPos_t pos),
-       stop(void);
+  void attach(const int8_t p),
+       write(const servoPos_t pos),
+       detach(void);
   inline servoPos_t read(void) __attribute__((always_inline)) { return *ocr; }
 
  private:
@@ -46,7 +46,7 @@ class Adafruit_NeoServo {
 #ifdef TIMER3_A_PIN                  // For chips with >1 timer/counter...
   volatile servoPos_t *counter;      // Timer/Counter count reg. for pin
 #endif                               // (else always TCNT1)
-  boolean              active;       // True after first move() call
+  boolean              active;       // True after first write() call
   void                 toggle(void); // PWM on/off
 };
 

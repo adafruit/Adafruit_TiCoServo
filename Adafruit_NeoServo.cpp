@@ -20,12 +20,12 @@
 
 #include "Adafruit_NeoServo.h"
 
-void Adafruit_NeoServo::begin(const int8_t p) {
+void Adafruit_NeoServo::attach(const int8_t p) {
 
   // Referencing any timer/counter configures it to ~50 Hz and sets all
   // output compare registers to a roughly centered-ish position for
   // servos (1.5 ms).  PWM output for the pin is NOT enabled until the
-  // first call to move().
+  // first call to write().
 
 #if defined(__AVR_ATtiny85__)
   // Adafruit Trinket, etc. ------------------------------------------------
@@ -208,9 +208,9 @@ void Adafruit_NeoServo::toggle(void) {
 // library sets mechanism, not policy.  Sketch should use Arduino map()
 // function or its own techniques for scaling servo pos to timer counts.
 // -------------------------------------------------------------------------
-void Adafruit_NeoServo::move(const servoPos_t pos) {
+void Adafruit_NeoServo::write(const servoPos_t pos) {
 
-  if(pin < 0) return;   // Invalid pin passed to begin()
+  if(pin < 0) return;   // Invalid pin passed to attach()
 
   *ocr = pos;           // Set output compare register
   if(active) return;    // If pin already enabled, we're done
@@ -232,7 +232,7 @@ void Adafruit_NeoServo::move(const servoPos_t pos) {
 // -------------------------------------------------------------------------
 // Disable PWM output on pin
 // -------------------------------------------------------------------------
-void Adafruit_NeoServo::stop(void) {
+void Adafruit_NeoServo::detach(void) {
 
   if((pin < 0) || !active) return;  // Pin not previously used; ignore
 
