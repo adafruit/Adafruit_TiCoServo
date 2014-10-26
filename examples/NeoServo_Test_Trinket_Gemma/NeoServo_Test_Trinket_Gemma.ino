@@ -8,10 +8,12 @@
   - NeoPixels and servos in the same sketch!
 
   THE BAD NEWS:
-  - Servo resolution is VERY coarse on ATtiny boards...only eight or so
-    distinct positions (but many sketches only need two, e.g. "up" and
-    "down" or "open" and "closed" servo positions, etc.).
   - Only works with servos on pin 1 and/or 4 (only pin D1 on Gemma).
+  - Servo resolution is VERY coarse on ATtiny boards...only eight or so
+    distinct positions (but many sketches only need two, e.g. up/down,
+    open/closed, etc.  ATtiny version of the library ONLY works in 'raw'
+    timer/counter ticks, because scaling from degrees or microseconds is
+    pretty much useless, many movements would simply not register.
 
   Example moves servos on pins 1 and 4 while moving a dot along a NeoPixel
   strip on pin 0.
@@ -80,5 +82,5 @@ void loop(void) {
   strip.setPixelColor(pixelNum, 255, 0, 0); // Set new dot
   strip.show();                             // Update strip
 
-  delay(25);
+  delay(30);
 }
