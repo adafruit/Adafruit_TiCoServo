@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------
-  Adafruit_NeoServo example for ATtiny-based boards such as the Adafruit
+  Adafruit_TiCoServo example for ATtiny-based boards such as the Adafruit
   Trinket and Gemma (not Pro Trinket -- see other example for that).
   Demonstrates NeoPixel animation and servo motion in the same sketch,
   using Timer/Counter 1 for servo control.
@@ -23,7 +23,7 @@
  #error "This code is for ATtiny boards, see other example for ATmega."
 #endif
 #include <Adafruit_NeoPixel.h>
-#include <Adafruit_NeoServo.h>
+#include <Adafruit_TiCoServo.h>
 #include <avr/power.h>
 
 // NeoPixel parameters.  These are configurable, but the pin number must
@@ -32,7 +32,7 @@
 #define LED_PIN      0
 
 // Servo parameters.  The pins are NOT configurable -- these are the only
-// two that the NeoServo library can handle on a Trinket.  Servo position
+// two that the TiCoServo library can handle on a Trinket.  Servo position
 // is specified in raw timer/counter ticks (1 tick = 0.128 milliseconds).
 // Servo pulse timing is typically 1-2 ms, but can vary slightly among
 // servos, so you may need to tweak these limits to match your reality.
@@ -41,8 +41,8 @@
 #define SERVO_MIN    8 // ~1 ms pulse
 #define SERVO_MAX   15 // ~2 ms pulse
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(N_LEDS, LED_PIN);
-Adafruit_NeoServo servo[2];
+Adafruit_NeoPixel  strip = Adafruit_NeoPixel(N_LEDS, LED_PIN);
+Adafruit_TiCoServo servo[2];
 
 void setup(void) {
 #if (F_CPU == 16000000L)

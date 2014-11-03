@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------
-  Adafruit_NeoServo example for ATmega-based boards such as the Arduino
+  Adafruit_TiCoServo example for ATmega-based boards such as the Arduino
   Uno, Leonardo, Mega, Duemilanove and compatible boards such as the
   Adafruit Pro Trinket, Flora or PJRC Teensy 2.0 (not Trinket or Gemma,
   see other example for that).
@@ -23,7 +23,7 @@
  #error "This code is for ATmega boards, see other example for ATtiny."
 #endif
 #include <Adafruit_NeoPixel.h>
-#include <Adafruit_NeoServo.h>
+#include <Adafruit_TiCoServo.h>
 
 // NeoPixel parameters. These are configurable, but the pin number must
 // be different than the servo(s).
@@ -45,8 +45,8 @@
 #define SERVO_MIN 1000 // 1 ms pulse
 #define SERVO_MAX 2000 // 2 ms pulse
 
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(N_LEDS, LED_PIN);
-Adafruit_NeoServo servo;
+Adafruit_NeoPixel  strip = Adafruit_NeoPixel(N_LEDS, LED_PIN);
+Adafruit_TiCoServo servo;
 
 void setup(void) {
   servo.attach(SERVO_PIN, SERVO_MIN, SERVO_MAX);

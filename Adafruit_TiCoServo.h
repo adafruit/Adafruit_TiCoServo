@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------
-  Adafruit_NeoServo library: uses Timer/Counter 1 (or 3,4,5) to allow use
+  Adafruit_TiCoServo library: uses Timer/Counter 1 (or 3,4,5) to allow use
   of NeoPixels and servos in the same project (with lots of caveats -- see
   the examples for further explanation). This is similar in ways to the
   early (pre-0016) Arduino Servo library, but updated for new boards.
@@ -13,17 +13,23 @@
 
   Open Source License
 
-  Adafruit_NeoServo is free software. You can redistribute it and/or
+  Adafruit_TiCoServo is free software. You can redistribute it and/or
   modify it under the terms of Creative Commons Attribution 3.0 United
   States License. To view a copy of this license, visit
   http://creativecommons.org/licenses/by/3.0/us/
   ------------------------------------------------------------------------*/
 
-#ifndef _ADAFRUIT_NEOSERVO_H_
-#define _ADAFRUIT_NEOSERVO_H_
+#ifndef _ADAFRUIT_TICOSERVO_H_
+#define _ADAFRUIT_TICOSERVO_H_
 
 #include <Arduino.h>
-#include "known_16bit_timers.h" // Timer pins for various Arduino-alikes
+#include "known_16bit_timers.h" // Timer pins for various Arduino-alikes.
+// This header is used (instead of the stock Arduino digitalPinToTimer()
+// in pins_arduino.h) because the latter doesn't always give precedence
+// to 16-bit timers on certain pins; e.g. on Leonardo, pin 11 refers to
+// TIMER0A instead of TIMER1C, which we'd prefer. This means that the more
+// esoteric Arduino-compatibles may not work off the bat until this header
+// file is suitably amended.
 
 #ifdef TIMER1_A_PIN             // Defined in known_16bit_timers.h if present
  typedef uint16_t servoPos_t;   // Servo positions are 16-bit values
@@ -37,20 +43,20 @@
  #define __TINY_SERVO__
 #endif
 
-class Adafruit_NeoServo {
+class Adafruit_TiCoServo {
  public:
 #ifdef __TINY_SERVO__
   // Behavior is slightly different for ATtiny vs other devices.
   // Due to the limited timer resolution, servo read/write only work in
   // 'raw' timer/counter ticks; degrees or microseconds are never used.
-  Adafruit_NeoServo(void) : pin(-1), on(false) { };
+  Adafruit_TiCoServo(void) : pin(-1), on(false) { };
   void              attach(const int8_t pin),
                     write(const servoPos_t pos);
   inline servoPos_t read(void) __attribute__((always_inline)) { return *ocr; }
 #else
   // On other boards, read/write are available both in degrees and
   // microseconds, consistent with original Arduino Servo library.
-  Adafruit_NeoServo(void) : pin(-1), on(false), minPulse(MIN_PULSE_WIDTH),
+  Adafruit_TiCoServo(void) : pin(-1), on(false), minPulse(MIN_PULSE_WIDTH),
     maxPulse(MAX_PULSE_WIDTH) { };
   void        attach(const int8_t pin, const uint16_t min = MIN_PULSE_WIDTH,
                 const uint16_t max = MAX_PULSE_WIDTH),
@@ -75,4 +81,4 @@ class Adafruit_NeoServo {
 #endif
 };
 
-#endif // _ADAFRUIT_NEOSERVO_H_
+#endif // _ADAFRUIT_TICOSERVO_H_

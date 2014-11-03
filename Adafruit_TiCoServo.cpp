@@ -1,5 +1,5 @@
 /*------------------------------------------------------------------------
-  Adafruit_NeoServo library: uses Timer/Counter 1 (or 3,4,5) to allow use
+  Adafruit_TiCoServo library: uses Timer/Counter 1 (or 3,4,5) to allow use
   of NeoPixels and servos in the same project (with lots of caveats -- see
   the examples for further explanation). This is similar in ways to the
   early (pre-0016) Arduino Servo library, but updated for new boards.
@@ -13,20 +13,20 @@
 
   Open Source License
 
-  Adafruit_NeoServo is free software. You can redistribute it and/or
+  Adafruit_TiCoServo is free software. You can redistribute it and/or
   modify it under the terms of Creative Commons Attribution 3.0 United
   States License. To view a copy of this license, visit
   http://creativecommons.org/licenses/by/3.0/us/
   ------------------------------------------------------------------------*/
 
-#include "Adafruit_NeoServo.h"
+#include "Adafruit_TiCoServo.h"
 
 // -------------------------------------------------------------------------
 // Enable servo use on requested pin.  Must call this before any write()
 // operation.  Pin selection is VERY limited, see examples (or
 // known_16_bit_timers.h) for a list.  
 // -------------------------------------------------------------------------
-void Adafruit_NeoServo::attach(const int8_t p
+void Adafruit_TiCoServo::attach(const int8_t p
 #ifndef __TINY_SERVO__
   , const uint16_t min, // 0, 180 degree servo pulse
     const uint16_t max  // times in microseconds.
@@ -181,7 +181,7 @@ void Adafruit_NeoServo::attach(const int8_t p
 // control registers for no output, so switching on or off just needs to
 // toggle bit difference between off & non-inverting mode.
 // -------------------------------------------------------------------------
-void Adafruit_NeoServo::toggle(void) {
+void Adafruit_TiCoServo::toggle(void) {
 
 #ifdef __TINY_SERVO__
   // Adafruit Trinket, etc. ------------------------------------------------
@@ -229,7 +229,7 @@ void Adafruit_NeoServo::toggle(void) {
 // -------------------------------------------------------------------------
 // Set servo position; units vary, see notes below
 // -------------------------------------------------------------------------
-void Adafruit_NeoServo::write(servoPos_t pos) {
+void Adafruit_TiCoServo::write(servoPos_t pos) {
 
   if(pin < 0) return;   // Invalid pin passed to attach()
 
@@ -268,7 +268,7 @@ void Adafruit_NeoServo::write(servoPos_t pos) {
 // -------------------------------------------------------------------------
 // Stop servo pulse output on pin
 // -------------------------------------------------------------------------
-void Adafruit_NeoServo::detach(void) {
+void Adafruit_TiCoServo::detach(void) {
 
   if((pin < 0) || !on) return;  // Pin not previously used; ignore
 
@@ -290,14 +290,14 @@ void Adafruit_NeoServo::detach(void) {
 // -------------------------------------------------------------------------
 // Return servo position in degrees (not available on ATtiny)
 // -------------------------------------------------------------------------
-uint8_t Adafruit_NeoServo::read(void) {
+uint8_t Adafruit_TiCoServo::read(void) {
   return (*ocr - minPulse) * 180L / (maxPulse - minPulse);
 }
 
 // -------------------------------------------------------------------------
 // Return servo position in microseconds (not available on ATtiny)
 // -------------------------------------------------------------------------
-uint16_t Adafruit_NeoServo::readMicroseconds(void) {
+uint16_t Adafruit_TiCoServo::readMicroseconds(void) {
 #if (F_CPU == 8000000L)
   return *ocr;
 #else
