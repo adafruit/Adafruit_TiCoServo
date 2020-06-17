@@ -1,3 +1,5 @@
+// THIS CODE IS FOR ATTINY BOARDS. SEE OTHER EXAMPLE FOR ATMEGA.
+
 /*------------------------------------------------------------------------
   Adafruit_TiCoServo example for ATtiny-based boards such as the Adafruit
   Trinket and Gemma (not Pro Trinket -- see other example for that).
@@ -19,9 +21,8 @@
   strip on pin 0.
   ------------------------------------------------------------------------*/
 
-#if !defined(__AVR_ATtiny85__)
- #error "This code is for ATtiny boards, see other example for ATmega."
-#endif
+#if defined(__AVR_ATtiny85__)
+
 #include <Adafruit_NeoPixel.h>
 #include <Adafruit_TiCoServo.h>
 #include <avr/power.h>
@@ -84,3 +85,5 @@ void loop(void) {
 
   delay(30);
 }
+
+#endif // __AVR_ATtiny85__
