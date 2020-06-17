@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['write',['write',['../class_adafruit___ti_co_servo.html#ad06a4f28ab8148ca2106f8ea769748e5',1,'Adafruit_TiCoServo']]]
+  ['read',['read',['../class_adafruit___ti_co_servo.html#aa10f40dc71651f55e00e99bb04823b21',1,'Adafruit_TiCoServo']]]
 ];
