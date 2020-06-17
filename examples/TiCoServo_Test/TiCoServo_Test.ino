@@ -1,3 +1,5 @@
+// THIS CODE IS FOR ATMEGA BOARDS. SEE OTHER EXAMPLE FOR ATTINY.
+
 /*------------------------------------------------------------------------
   Adafruit_TiCoServo example for ATmega-based boards such as the Arduino
   Uno, Leonardo, Mega, Duemilanove and compatible boards such as the
@@ -19,9 +21,6 @@
   fills a portion of a NeoPixel strip (pin 6) to match.
   ------------------------------------------------------------------------*/
 
-#if defined(__AVR_ATtiny85__)
- #error "This code is for ATmega boards, see other example for ATtiny."
-#endif
 #include <Adafruit_NeoPixel.h>
 #include <Adafruit_TiCoServo.h>
 
