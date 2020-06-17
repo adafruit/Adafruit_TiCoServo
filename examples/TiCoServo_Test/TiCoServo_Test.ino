@@ -21,8 +21,6 @@
   fills a portion of a NeoPixel strip (pin 6) to match.
   ------------------------------------------------------------------------*/
 
-#if !defined(__AVR_ATtiny85__)
-
 #include <Adafruit_NeoPixel.h>
 #include <Adafruit_TiCoServo.h>
 
@@ -64,5 +62,3 @@ void loop(void) {
   while(x--) strip.setPixelColor(x, 255, 0, 0); // Set pixels
   strip.show();                                 // Update strip
 }
-
-#endif // __AVR_ATtiny85__

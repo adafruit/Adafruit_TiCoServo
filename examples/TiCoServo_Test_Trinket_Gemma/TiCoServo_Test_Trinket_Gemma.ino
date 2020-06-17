@@ -21,8 +21,6 @@
   strip on pin 0.
   ------------------------------------------------------------------------*/
 
-#if defined(__AVR_ATtiny85__)
-
 #include <Adafruit_NeoPixel.h>
 #include <Adafruit_TiCoServo.h>
 #include <avr/power.h>
@@ -85,5 +83,3 @@ void loop(void) {
 
   delay(30);
 }
-
-#endif // __AVR_ATtiny85__
