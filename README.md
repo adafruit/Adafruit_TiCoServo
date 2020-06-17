@@ -1,4 +1,4 @@
-Adafruit_TiCoServo
+#Adafruit_TiCoServo [![Build Status](https://github.com/adafruit/Adafruit_TiCoServo/workflows/Arduino%20Library%20CI/badge.svg)](https://github.com/adafruit/Adafruit_TiCoServo/actions)
 ==================
 
 An alternate servo library when NeoPixels and servos are both needed in the same sketch (the stock Arduino Servo library stutters with the addition of NeoPixels). Has some limitations of its own, see examples for pros and cons. See Adafruit_TiCoServo.cpp for attribution.
